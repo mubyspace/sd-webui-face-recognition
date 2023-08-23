@@ -42,7 +42,7 @@ def deep_face(base64_code, detector):
         if face['confidence'] >= 0.9:
             x, y, w, h = face['facial_area']['x'], face['facial_area']['y'], face['facial_area']['w'], \
                          face['facial_area']['h']
-            face_area = img[y:h, x:w]
+            face_area = img[y:y + h, x:x + w]
             _, buffer = cv2.imencode('.png', face_area)
             data.append(base64.b64encode(buffer).decode())
     msg = "Successful" if len(data) > 0 else "Failed"
